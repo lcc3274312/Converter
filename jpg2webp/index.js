@@ -1,9 +1,9 @@
-let convertedBlob: Blob | null = null;
-let originalFileName: string = '';
+let convertedBlob = null;
+let originalFileName = '';
 
 // 監聽文件選擇
-document.getElementById('fileInput')?.addEventListener('change', async (e: Event) => {
-    const file = (e.target as HTMLInputElement).files?.[0];
+document.getElementById('fileInput')?.addEventListener('change', async (e) => {
+    const file = e.target.files?.[0];
     if (!file) return;
 
     // 儲存原始檔名（不含副檔名）
@@ -16,7 +16,7 @@ document.getElementById('fileInput')?.addEventListener('change', async (e: Event
     }
 
     // 顯示預覽
-    const preview = document.getElementById('preview') as HTMLImageElement;
+    const preview = document.getElementById('preview');
     preview.src = URL.createObjectURL(file);
     preview.style.display = 'block';
 
@@ -26,7 +26,7 @@ document.getElementById('fileInput')?.addEventListener('change', async (e: Event
         if (status) {
             status.textContent = '轉換完成！';
         }
-        
+
         // 顯示下載按鈕
         const downloadBtn = document.getElementById('downloadBtn');
         if (downloadBtn) {
@@ -34,13 +34,13 @@ document.getElementById('fileInput')?.addEventListener('change', async (e: Event
         }
     } catch (error) {
         if (status) {
-            status.textContent = '轉換失敗: ' + (error as Error).message;
+            status.textContent = '轉換失敗: ' + error.message;
         }
     }
 });
 
 // 轉換函數
-function convertToWebP(file: File): Promise<Blob> {
+function convertToWebP(file) {
     return new Promise((resolve, reject) => {
         const img = new Image();
         img.onload = () => {
@@ -53,7 +53,7 @@ function convertToWebP(file: File): Promise<Blob> {
                 return;
             }
             ctx.drawImage(img, 0, 0);
-            
+
             canvas.toBlob((blob) => {
                 if (blob) {
                     resolve(blob);
@@ -70,7 +70,7 @@ function convertToWebP(file: File): Promise<Blob> {
 // 下載按鈕點擊事件
 document.getElementById('downloadBtn')?.addEventListener('click', () => {
     if (!convertedBlob || !originalFileName) return;
-    
+
     const url = URL.createObjectURL(convertedBlob);
     const link = document.createElement('a');
     link.href = url;
