@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPG 轉 WebP 工具</title>
+    <link rel="stylesheet" href="styles/shared.css">
+    <link rel="stylesheet" href="styles/jpg2webp.css">
+</head>
+<body>
+    <div class="container">
+        <h1>JPG 轉 WebP 工具</h1>
+        
+        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+            選擇圖片
+        </button>
+        <input type="file" id="fileInput" accept="image/jpeg,image/jpg" />
+        
+        <div id="status"></div>
+        
+        <img id="preview" class="preview" style="display: none;" />
+        
+        <button id="downloadBtn" style="display: none;">
+            下載 WebP
+        </button>
+    </div>
+
+    <script src="scripts/jpg2webp.ts"></script>
+</body>
+</html>

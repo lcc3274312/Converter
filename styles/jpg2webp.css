@@ -1,0 +1,21 @@
+.container {
+    text-align: center;
+}
+
+.preview {
+    max-width: 100%;
+    margin: 20px 0;
+}
+
+#status {
+    margin: 10px 0;
+    color: #666;
+}
+
+#fileInput {
+    display: none;
+}
+
+.upload-btn {
+    background-color: #2196F3;
+}
